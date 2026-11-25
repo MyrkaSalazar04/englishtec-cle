@@ -296,7 +296,7 @@ def logout():
 
 # ---------------------------------------------------------------- Coordinación
 def lista_alumnos(q="", estado=""):
-    sql = "SELECT a.*, g.nombre AS grupo FROM alumnos a LEFT JOIN grupos g ON g.id=a.grupo_id WHERE a.baja=%d" % (1 if estado == "Baja" else 0); args = []
+    sql = "SELECT a.*, g.nombre AS grupo FROM alumnos a LEFT JOIN grupos g ON g.id=a.grupo_id WHERE a.baja=%d" % (1 if estado == "baja" else 0); args = []
     if q: sql += " AND (lower(a.nombre) LIKE ? OR a.control LIKE ? OR lower(a.folio) LIKE ?)"; args += ["%" + q.lower() + "%"] * 3
     if estado == "pendiente": sql += " AND a.pago=0"
     if estado == "recibido": sql += " AND a.pago=1"

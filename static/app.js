@@ -100,7 +100,7 @@ async function vConsulta(){
   <form id="f" novalidate><label for="control">Número de Control</label><input id="control" inputmode="numeric" autocomplete="username" placeholder="Solo Números">
   <label for="codigo">Código Personal</label><input id="codigo" autocomplete="off" autocapitalize="characters" placeholder="Ej. K7M4-2Q9X">
   <div id="m" role="alert"></div><button class="btn" id="go" type="submit">Consultar</button> ${volver()}</form>
-  <p class="note" style="margin-top:16px">¿Olvidaste Tu Código? Pide Uno Nuevo En La Coordinación. Datos Simulados: Prueba con 20000001 · K7M4-2Q9X</p></section><div id="res"></div>`;
+  <p class="note" style="margin-top:16px">¿Olvidaste Tu Código? Pide Uno Nuevo En La Coordinación. Datos Simulados: Prueba con 20000001 · GQ49-6RAF</p></section><div id="res"></div>`;
   $("#f").onsubmit=async e=>{e.preventDefault();const b=$("#go");b.disabled=true;
    const r=await api("/api/consulta",{json:{control:$("#control").value,codigo:$("#codigo").value}});b.disabled=false;
    if(!r.ok){$("#m").innerHTML=`<div class="msg err">${esc(r.data.error)}</div>`;$("#res").innerHTML="";return}
