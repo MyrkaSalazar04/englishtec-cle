@@ -272,6 +272,7 @@ def consulta():
         c = db().execute("SELECT * FROM calificaciones WHERE alumno_id=?", (a["id"],)).fetchone()
         if gr["publicado"] and c:
             out["calificaciones"] = [c["u1"], c["u2"], c["u3"], c["u4"]]; out["general"] = promedio(c)
+            out["aprobado"] = all(c[k] is not None for k in ("u1", "u2", "u3", "u4")) and sum(c[k] for k in ("u1", "u2", "u3", "u4")) / 4 >= 70
     return jsonify(out)
 
 # ---------------------------------------------------------------- sesión del personal

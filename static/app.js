@@ -106,7 +106,8 @@ async function vConsulta(){
    if(!r.ok){$("#m").innerHTML=`<div class="msg err">${esc(r.data.error)}</div>`;$("#res").innerHTML="";return}
    $("#m").innerHTML="";const d=r.data;let g="";
    if(d.calificaciones){g=`<div class="tablewrap"><table><thead><tr><th>Unidad</th><th>Calificación</th></tr></thead><tbody>${d.calificaciones.map((v,i)=>`<tr><td>Unidad ${i+1}</td><td>${v}</td></tr>`).join("")}</tbody></table></div>
-    <div class="grade-total" style="margin-top:14px"><span>Calificación General</span><span class="n">${d.general}</span></div>`}
+      <div class="grade-total" style="margin-top:14px"><span>Calificación General</span><span class="n">${d.general}</span></div>
+      <div class="msg ${d.aprobado?"ok":"err"}" role="status">${d.aprobado?"Resultado: Aprobado":"Resultado: Reprobado"}</div>`}
    else g=`<div class="msg ok" style="background:var(--row);color:var(--txt)">${d.grupo?"Tus Calificaciones Aún No Están Publicadas. Tu Docente Las Publicará Al Terminar La Captura.":"Todavía No Tienes Grupo Asignado. La Coordinación Te Lo Asignará."}</div>`;
    $("#res").innerHTML=`<section class="card"><h2>Hola, ${esc(d.nombre)}</h2><p>Folio <b>${esc(d.folio)}</b> · ${esc(d.tipo)}</p>
    <p>${pagoPill(d.pago)} ${d.nivel?`<span class="lvl">Nivel ${esc(d.nivel)}</span>`:`<span class="pill warn">Nivel Por Asignar</span>`}</p>
